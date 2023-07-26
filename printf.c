@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 int ixp, pr = 0, pri = 0;
 int range, flag, pre, area, buff_np = 0;
 va_list st;
-char buf[BUFF_SIZE];
+char buff[BUFF_SIZE];
 if (format == NULL)
 return (-1);
 va_start(st, format);
@@ -43,7 +43,7 @@ va_end(st);
 return (pri);
 }
 /**
-*pri_buff - Codes has printed contents of the buffer if existance
+*pri_buff - Code has printed contents of the buffer if in existance
 * @buff: Is an array of chars
 * @buff_np: representation the length.
 */

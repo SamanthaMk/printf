@@ -1,14 +1,14 @@
 #include "main.h"
 /*** PRINT POINTER ****/
 /**
-* prints_point -This code has a value of a pointer variable
-* @sets:  Arguments that wil be listed in the code
-* @flag:  Counts availble flags
+* prints_point -This code prints value of a pointer variable
+* @sets: Arguments that wil be listed in the code
+* @flag: Counts availble flags
 * @buff: The buffer array to that will handle print
- *@range: value of the range
+ *@range: value of the width range
 * @pre: Will be the precision in the code
 * @area: The area size of the specifier
-* Returns:Value of chars printed
+* Return: Chars printed
 */
 int prints_point(va_list sets, char buff[],
 int flag, int range, int pre, int area)
@@ -38,8 +38,9 @@ app = '+', len1++;
 else if (flag & FL_SPACE)
 app = ' ', len1++;
 yp++;
-/*return (write(1, &buff[y], BUFF_SIZE - y - 1));*/
-return (write_print(buff, yp, len1, range, flag, ptr, app, dad));
+return (write(buff, yp, len1,
+range, flag, ptr, app, dad));
+/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
 }
 /***PRINT NON PRINTABLE ***/
 /**
@@ -50,7 +51,7 @@ return (write_print(buff, yp, len1, range, flag, ptr, app, dad));
  *@range: value of the range
 * @pre: Will be the precision in the code
 * @area: The area size of the specifier
- * Return: Non printable
+ * Return: Chars printed
 */
 int prints_none_print(va_list sets, char buff[],
 int flag, int range, int pre, int area)
@@ -78,7 +79,7 @@ return (write(1, buff, y + grp));
 /**
 * prints_rev - Prints reverse string.
 * @sets:  Arguments that wil be listed in the code
-* @flag:  Counts availble flags
+* @flag: Counts availble flags
 * @buff: The buffer array to that will handle print
  *@range: value of the range
 * @pre: Will be the precision in the code
@@ -89,7 +90,7 @@ int prints_rev(va_list sets, char buff[],
 int flag, int range, int pre, int area)
 {
 char *p;
-int y, count = 0;
+int y, cal = 0;
 VAR(buff);
 VAR(flag);
 VAR(range);
@@ -100,7 +101,7 @@ if (p == NULL)
 VAR(pre);
 p = ")Null(";
 }
-for (y = 0; str[y]; y++)
+for (y = 0; p[y]; y++)
 for (y = y - 1; y >= 0; y--)
 {
 char zp = p[y];
@@ -111,8 +112,8 @@ return (cal);
 }
 /**** PRINT A STRING IN ROT13 ****/
 /**
-* prints_rot13strng - Print a string in rot13.
-* @sets:  Arguments that wil be listed in the code
+* prints_rot13strng - This code prints a string in rot13.
+* @sets:  Arguments that will be listed in the code
 * @flag:  Counts availble flags
 * @buff: The buffer array to that will handle print
 * @range: value of the range
@@ -137,22 +138,22 @@ VAR(pre);
 VAR(area);
 if (p == NULL)
 p = "(AHYY)";
-for (cal = 0; p[cal]; cal++)
+for (y = 0; p[y]; y++)
 {
 for (w = 0; az[w]; w++)
 {
-if (az[w] == p[w])
+if (az[w] == p[y])
 {
 xji = za[w];
-write(1, &x, 1);
+write(1, &xji, 1);
 cal++;
 break;
 }
 }
 if (!az[w])
 {
-xji = p[cal];
-write(1, &x, 1);
+xji = p[y];
+write(1, &xji, 1);
 cal++;
 }
 }

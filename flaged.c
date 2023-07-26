@@ -1,9 +1,9 @@
 #include "main.h"
 /**
-* flaged - This code has functions that will handle flags.
-* @form: The arguments that will be displayed in a string
+* flaged - This code has functions that will count flags.
+* @form: The arguments that are displayed in a formatted string
 * @mx: value that takes parameter.
-* Return: Flag:
+* Return: Flags
 */
 int flaged(const char *form, int *mx)
 {

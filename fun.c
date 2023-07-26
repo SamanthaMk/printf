@@ -91,8 +91,8 @@ return (write(1, "%%", 1));
 /*** PRINT INTEGER ***/
 /**
 * prints_int - This Code function will print int
-* @sets:  Arguments that wil be listed in the code
-* @flag:  Counts availble  flags
+* @sets: Arguments that wil be listed in the code
+* @flag: Counts availble  flags
 * @buff: Is the buffer array to that will handle print
  *@range: value of the range
 * @pre: Will be the precision in the code
@@ -122,7 +122,7 @@ buff[z--] = (gig % 10) + '0';
 gig /= 10;
 }
 z++;
-return (write_num1(minus, z, flag, range, pre, area, buff));
+return (write_num1(minus, z, buff, flag, range, pre, area));
 }
 /*** PRINT BINARY ***/
 /**
