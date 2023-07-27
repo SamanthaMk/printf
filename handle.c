@@ -1,27 +1,27 @@
 #include "main.h"
 
 /**
- * handle_print - Prints an argument based on its type
- * @fmt: Formatted string in which to print the arguments.
- * @list: List of arguments to be printed.
- * @ind: ind.
- * @buffer: Buffer array to handle print.
+ * handle - Prints an argument based on its type
+ * @format_str: Formatted string in which to print the arguments.
+ * @arg_list: List of arguments to be printed.
+ * @index: ind.
+ * @output_buffer: Buffer array to handle print.
  * @flags: Calculates active flags
  * @width: get width.
  * @precision: Precision specification
- * @size: Size specifier
+ * @arg_size: Size specifier
  * Return: 1 or 2;
  */
 
-int handle(const char *fmt, int *ind, va_list list, char buffer[],
+int handle(const char *format_str, int *index, va_list arg_list, char output_buffer[],
 
-        int flags, int width, int precision, int size)
+        int flags, int width, int precision, int arg_size)
 
 {
 
-	int i, unknow_len = 0, printed_chars = -1;
+	int j, unknow_lenth = 0, printed_chars = -1;
 
-	fmt_t fmt_types[] = {
+	FormatEntry format_types[] = {
 
 		{'c', print_char}, {'s', print_string}, {'%', print_percent},
 
@@ -35,35 +35,35 @@ int handle(const char *fmt, int *ind, va_list list, char buffer[],
 
 	};
 
-	for (i = 0; fmt_types[i].fmt != '\0'; i++)
+	for (j = 0; format_types[i].format != '\0'; j++)
 
-		if (fmt[*ind] == fmt_types[i].fmt)
+		if (format_str[*index] == format_types[i].format)
 
-			return (fmt_types[i].fn(list, buffer, flags, width, precision, size));
+			return (format_types[i].fn(arg_list, output_buffer, flags, width, precision, arg_size));
 
 
-	if (fmt_types[i].fmt == '\0')
+	if (format_types[i].format == '\0')
 	{
-		if (fmt[*ind] == '\0')
+		if (format[*index] == '\0')
 			return (-1);
 
 		unknow_len += write(1, "%%", 1);
 
-		if (fmt[*ind - 1] == ' ')
+		if (format[*index - 1] == ' ')
 			unknow_len += write(1, " ", 1);
 		else if (width)
 		{
-			--(*ind);
-			while (fmt[*ind] != ' ' && fmt[*ind] != '%')
-				--(*ind);
+			--(*index);
+			while (format[*index] != ' ' && format[*index] != '%')
+				--(*index);
 
-			if (fmt[*ind] == ' ')
-				--(*ind);
+			if (format[*index] == ' ')
+				--(*index);
 
 			return (1);
 		}
 
-		unknow_len += write(1, &fmt[*ind], 1);
+		unknow_len += write(1, &format[*index], 1);
 		return (unknow_len);
 	}
 
