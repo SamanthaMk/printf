@@ -15,7 +15,7 @@ return (pre);
 pre = 0;
 for (jk += 1; form[jk] != '\0'; jk++)
 {
-if (digit(form[jk]))
+if (is_digit(form[jk]))
 {
 pre *= 10;
 pre += form[jk] - '0';
@@ -27,9 +27,7 @@ pre = va_arg(st, int);
 break;
 }
 else
-}
 break;
-}
 }
 *ap = jk - 1;
 return (pre);

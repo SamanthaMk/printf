@@ -9,13 +9,13 @@
 * @pre: Will be the precision in the code
 * @area: The area size of the specifier
 * Return: Value of chars printed
-  */
+*/
 int prints_unsign_num(va_list sets, char buff[],
 int flag, int range, int pre, int area)
 {
-int y = BUFF_SIZE - 2
+int y = BUFF_SIZE - 2;
 unsigned long int gig = va_arg(sets, unsigned long int);
-gig = converted_area_sign(gig, area);
+gig = converted_area(gig, area);
 if (gig == 0)
 buff[y--] = '0';
 buff[BUFF_SIZE - 1] = '\0';
