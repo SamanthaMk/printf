@@ -15,7 +15,7 @@
 
 int handle(const char *format_str, int *index, va_list arg_list, char output_buffer[],
 
-        int flags, int width, int precision, int arg_size)
+        int flag, int range, int pre, int area)
 
 {
 
@@ -23,15 +23,15 @@ int handle(const char *format_str, int *index, va_list arg_list, char output_buf
 
 	FormatEntry format_types[] = {
 
-		{'c', print_char}, {'s', print_string}, {'%', print_percent},
+		{'c', prints_char1}, {'s', prints_string2}, {'%', prints_per_cent},
 
-		{'i', print_int}, {'d', print_int}, {'b', print_binary},
+		{'i', prints_int}, {'d', prints_int}, {'b', prints_binary},
 
-		{'u', print_unsigned}, {'o', print_octal}, {'x', print_hexadecimal},
+		{'u', prints_unsign_num}, {'o', print_octa}, {'x', prints_hexa},
 
-		{'X', print_hexa_upper}, {'p', print_pointer}, {'S', print_non_printable},
+		{'X', print_up_hexa}, {'p', prints_point}, {'S', prints_none_print},
 
-		{'r', print_reverse}, {'R', print_rot13string}, {'\0', NULL}
+		{'r', prints_rev}, {'R', print_rot13strng}, {'\0', NULL}
 
 	};
 
@@ -39,7 +39,7 @@ int handle(const char *format_str, int *index, va_list arg_list, char output_buf
 
 		if (format_str[*index] == format_types[i].format)
 
-			return (format_types[i].fn(arg_list, output_buffer, flags, width, precision, arg_size));
+			return (format_types[i].fn(arg_list, output_buffer, flag, range, pre, area));
 
 
 	if (format_types[i].format == '\0')
@@ -51,7 +51,7 @@ int handle(const char *format_str, int *index, va_list arg_list, char output_buf
 
 		if (format[*index - 1] == ' ')
 			unknow_len += write(1, " ", 1);
-		else if (width)
+		else if (range)
 		{
 			--(*index);
 			while (format[*index] != ' ' && format[*index] != '%')

@@ -25,9 +25,9 @@
  * @fmt: The format.
  * @fn: The function associated.
  */
-struct fmt
+struct format
 {
-        char fmt;
+        char format;
         int (*fn)(va_list, char[], int, int, int, int);
 };
 
@@ -38,11 +38,11 @@ struct fmt
  * @fmt: The format.
  * @fm_t: The function associated.
  */
-typedef struct fmt fmt_t;
+typedef struct format FormatEntry;
 
 int _printf(const char *format, ...);
-int handle_print(const char *fmt, int *i,
-va_list list, char buffer[], int flags, int width, int precision, int size);
+int handle(const char *format_str, int *index,
+va_list arg_list, char output_buffer[], int flag, int range, int pre, int area);
 void pri_buff(char buff[], int *buff_np);
 
 /****************** FUNCTIONS ******************/
@@ -81,9 +81,9 @@ int prints_point(va_list sets, char buff[],
 
 /* Funciotns to handle other specifiers */
 int flaged(const char *form, int *mx);
-int get_width(const char *format, int *i, va_list list);
+int get_print_width(const char *format_str, int *index, va_list arg_list);
 int find_pre(const char *form, int *ap, va_list st);
-int get_size(const char *format, int *i);
+int get_arg_size(const char *format_str, int *index);
 
 /*Function to print string in reverse*/
 int prints_rev(va_list sets, char buff[],
@@ -94,18 +94,18 @@ int print_rot13strng(va_list sets, char buff[],
         int flag, int range, int pre, int area);
 
 /* width handler */
-int handle_write_char(char c, char buffer[],
-        int flags, int width, int precision, int size);
-int write_number(int is_positive, int ind, char buffer[],
-        int flags, int width, int precision, int size);
-int write_num(int ind, char bff[], int flags, int width, int precision,
-        int length, char padd, char extra_c);
-int write_pointer(char buffer[], int ind, int length,
-        int width, int flags, char padd, char extra_c, int padd_start);
+int handles_write_chars(char ch, char buff[],
+        int flag, int range, int pre, int area);
+int write_numbers(int is_nega, int index, char buff[],
+        int flag, int range, int pre, int area);
+int write_nums(int index, char buff[], int flag, int range, int pre,
+        int len, char padding, char extra_char);
+int writes_pointers(char buff[], int index, int len,
+        int range, int flag, char padding, char extra_char, int padding_start);
 
-int write_unsgnd(int is_negative, int ind,
-char buffer[],
-        int flags, int width, int precision, int size);
+int write_unsigned(int is_nega, int index,
+char buff[],
+        int flag, int range, int pre, int area);
 
 /****************** UTILS ******************/
 int is_printable(char);

@@ -123,7 +123,7 @@ int write_nums(int index, char buff[],
 				buff[--index] = extra_char;
 			return (write(1, &buff[1], j - 1) + write(1, &buff[index], len));
 		}
-		else if (!(flag & FL_MINUS) && padding == '0')/* extra char to left of padd */
+		else if (!(flag & FL_MINUS) && padding == '0')
 		{
 			if (extra_char)
 				buff[--padding_start] = extra_char;
