@@ -19,7 +19,7 @@ int handle(const char *format_str, int *index, va_list arg_list, char output_buf
 
 {
 
-	int j, unknow_lenth = 0, printed_chars = -1;
+	int j, unknow_length = 0, printed_chars = -1;
 
 	FormatEntry format_types[] = {
 

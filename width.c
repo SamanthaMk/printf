@@ -16,7 +16,7 @@ int get_print_width(const char *format_str, int *index, va_list arg_list)
 
 	for (current_index = *index + 1; format_str[current_index] != '\0'; current_index++)
 	{
-		if (is_digit(format_str[current_index]))
+		if (digit_check(format_str[current_index]))
 		{
 			width *= 10;
 			width += format_str[current_index] - '0';

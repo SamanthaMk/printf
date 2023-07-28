@@ -63,7 +63,7 @@ int write_numbers(int is_nega, int index, char buff[],
 	int len = BUFF_SIZE - index - 1;
 	char padding = ' ', extra_char = 0;
 
-	UNUSED(area);
+	VAR(area);
 
 	if ((flag & FL_ZERO) && !(flag & FL_MINUS))
 		padding = '0';
@@ -155,8 +155,8 @@ int write_unsigned(int is_nega, int index,
 	int len = BUFF_SIZE - index - 1, j = 0;
 	char padding = ' ';
 
-	UNUSED(is_nega);
-	UNUSED(area);
+	VAR(is_nega);
+	VAR(area);
 
 	if (pre == 0 && index == BUFF_SIZE - 2 && buff[index] == '0')
 		return (0);
