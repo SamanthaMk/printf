@@ -62,7 +62,7 @@ int prints_binary(va_list sets, char buff[],
         int pre, int flag, int range, int area);
 int prints_unsign_num(va_list sets, char buff[],
         int flag, int range, int pre, int area);
-int prints_octa(va_list sets, char buff[],
+int print_octa(va_list sets, char buff[],
         int flag, int range, int pre, int area);
 int prints_hexa(va_list sets, char buff[],
         int flag, int range, int pre, int area);
@@ -108,11 +108,11 @@ char buff[],
         int flag, int range, int pre, int area);
 
 /****************** UTILS ******************/
-int is_printable(char);
-int append_hexa_code(char, char[], int);
-int is_digit(char);
+int printable_check(char);
+int add_hexa_code(char, char[], int);
+int digit_check(char);
 
-long int convert_size_number(long int num, int size);
-long int convert_size_unsgnd(unsigned long int num, int size);
+long int convert_num_size(long int number, int area);
+long int convert_area_unsigned(unsigned long int number, int area);
 
 #endif /* MAIN_H */

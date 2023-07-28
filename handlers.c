@@ -18,14 +18,14 @@ int handles_write_chars(char ch, char buff[],
 	int j = 0;
 	char padding = ' ';
 
-	UNUSED(pre);
-	UNUSED(area);
+	VAR(pre);
+	VAR(area);
 
 	if (flag & FL_ZERO)
 		padding = '0';
 
-	buffer[j++] = ch;
-	buffer[j] = '\0';
+	buff[j++] = ch;
+	buff[j] = '\0';
 
 	if (range > 1)
 	{
