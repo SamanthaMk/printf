@@ -1,85 +1,84 @@
 #include "main.h"
 
 /**
- * is_printable - Evaluates if a char is printable
- * @c: Char to be evaluated.
+ * printable_check - Evaluates if a char is printable
+ * @ch: Char to be evaluated.
  *
  * Return: 1 if c is printable, 0 otherwise
  */
-int is_printable(char c)
+int printable_check(char ch)
 {
-	if (c >= 32 && c < 127)
+	if (ch >= 32 && ch < 127)
 		return (1);
 
 	return (0);
 }
 
 /**
- * append_hexa_code - Append ascci in hexadecimal code to buffer
- * @buffer: Array of chars.
- * @i: Index at which to start appending.
- * @ascii_code: ASSCI CODE.
+ * add_hexa_code - Append ascci in hexadecimal code to buffer
+ * @buff: Array of chars.
+ * @j: Index at which to start appending.
+ * @ascii: ASSCI CODE.
  * Return: Always 3
  */
-int append_hexa_code(char ascii_code, char buffer[], int i)
+int add_hexa_code(char ascii, char buff[], int j)
 {
-	char map_to[] = "0123456789ABCDEF";
-	/* The hexa format code is always 2 digits long */
-	if (ascii_code < 0)
-		ascii_code *= -1;
+	char hexa_num[] = "0123456789ABCDEF";
+	if (ascii < 0)
+		ascii *= -1;
 
-	buffer[i++] = '\\';
-	buffer[i++] = 'x';
+	buff[j++] = '\\';
+	buff[j++] = 'x';
 
-	buffer[i++] = map_to[ascii_code / 16];
-	buffer[i] = map_to[ascii_code % 16];
+	buff[j++] = hexa_num[ascii / 16];
+	buff[j] = hexa_num[ascii % 16];
 
 	return (3);
 }
 
 /**
- * is_digit - Verifies if a char is a digit
- * @c: Char to be evaluated
+ * digit_check - Verifies if a char is a digit
+ * @ch: Char to be evaluated
  *
  * Return: 1 if c is a digit, 0 otherwise
  */
-int is_digit(char c)
+int digit_check(char ch)
 {
-	if (c >= '0' && c <= '9')
+	if (ch >= '0' && ch <= '9')
 		return (1);
 
 	return (0);
 }
 
 /**
- * convert_size_number - Casts a number to the specified size
- * @num: Number to be casted.
- * @size: Number indicating the type to be casted.
+ * convert_num_size - Casts a number to the specified size
+ * @number: Number to be casted.
+ * @area: Number indicating the type to be casted.
  *
  * Return: Casted value of num
  */
-long int convert_size_number(long int num, int size)
+long int convert_num_size(long int number, int area)
 {
-	if (size == S_LONG)
-		return (num);
-	else if (size == S_SHORT)
-		return ((short)num);
+	if (area == S_LONG)
+		return (number);
+	else if (area == S_SHORT)
+		return ((short)number);
 
-	return ((int)num);
+	return ((int)number);
 }
 /**
- * convert_size_unsgnd - Casts a number to the specified size
- * @num: Number to be casted
- * @size: Number indicating the type to be casted
+ * convert_area_unsigned - Casts a number to the specified size
+ * @number: Number to be casted
+ * @area: Number indicating the type to be casted
  *
  * Return: Casted value of num
  */
-long int convert_size_unsgnd(unsigned long int num, int size)
+long int convert_area_unsigned(unsigned long int number, int area)
 {
-	if (size == S_LONG)
-		return (num);
-	else if (size == S_SHORT)
-		return ((unsigned short)num);
+	if (area == S_LONG)
+		return (number);
+	else if (area == S_SHORT)
+		return ((unsigned short)number);
 
-	return ((unsigned int)num);
+	return ((unsigned int)number);
 }

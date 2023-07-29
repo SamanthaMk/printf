@@ -1,70 +1,69 @@
 #include "main.h"
 
 /**
- * handle_print - Prints an argument based on its type
- * @fmt: Formatted string in which to print the arguments.
- * @list: List of arguments to be printed.
- * @ind: ind.
- * @buffer: Buffer array to handle print.
+ * handle - Prints an argument based on its type
+ * @format_str: Formatted string in which to print the arguments.
+ * @arg_list: List of arguments to be printed.
+ * @index: ind.
+ * @output_buffer: Buffer array to handle print.
  * @flags: Calculates active flags
  * @width: get width.
  * @precision: Precision specification
- * @size: Size specifier
+ * @arg_size: Size specifier
  * Return: 1 or 2;
  */
 
-int handle(const char *fmt, int *ind, va_list list, char buffer[],
+int handle(const char *format_str, int *index, va_list arg_list, char output_buffer[],
 
-        int flags, int width, int precision, int size)
+        int flag, int range, int pre, int area)
 
 {
 
-	int i, unknow_len = 0, printed_chars = -1;
+	int j, unknow_length = 0, printed_chars = -1;
 
-	fmt_t fmt_types[] = {
+	FormatEntry format_types[] = {
 
-		{'c', print_char}, {'s', print_string}, {'%', print_percent},
+		{'c', prints_char1}, {'s', prints_string2}, {'%', prints_per_cent},
 
-		{'i', print_int}, {'d', print_int}, {'b', print_binary},
+		{'i', prints_int}, {'d', prints_int}, {'b', prints_binary},
 
-		{'u', print_unsigned}, {'o', print_octal}, {'x', print_hexadecimal},
+		{'u', prints_unsign_num}, {'o', print_octa}, {'x', prints_hexa},
 
-		{'X', print_hexa_upper}, {'p', print_pointer}, {'S', print_non_printable},
+		{'X', print_up_hexa}, {'p', prints_point}, {'S', prints_none_print},
 
-		{'r', print_reverse}, {'R', print_rot13string}, {'\0', NULL}
+		{'r', prints_rev}, {'R', print_rot13strng}, {'\0', NULL}
 
 	};
 
-	for (i = 0; fmt_types[i].fmt != '\0'; i++)
+	for (j = 0; format_types[j].format != '\0'; j++)
 
-		if (fmt[*ind] == fmt_types[i].fmt)
+		if (format_str[*index] == format_types[j].format)
 
-			return (fmt_types[i].fn(list, buffer, flags, width, precision, size));
+			return (format_types[j].fn(arg_list, output_buffer, flag, range, pre, area));
 
-
-	if (fmt_types[i].fmt == '\0')
+	if (format_types[j].format == '\0')
 	{
-		if (fmt[*ind] == '\0')
+		if (format_str[*index] == '\0')
 			return (-1);
 
-		unknow_len += write(1, "%%", 1);
+		unknow_length += write(1, "%%", 1);
 
-		if (fmt[*ind - 1] == ' ')
-			unknow_len += write(1, " ", 1);
-		else if (width)
+		if (format_str[*index - 1] == ' ')
+			unknow_length += write(1, " ", 1);
+		else if (range)
 		{
-			--(*ind);
-			while (fmt[*ind] != ' ' && fmt[*ind] != '%')
-				--(*ind);
+			--(*index);
+			while (format_str[*index] != ' ' && format_str[*index] != '%')
+				--(*index);
 
-			if (fmt[*ind] == ' ')
-				--(*ind);
+			if (format_str[*index] == ' ')
+				--(*index);
 
 			return (1);
 		}
 
-		unknow_len += write(1, &fmt[*ind], 1);
-		return (unknow_len);
+		unknow_length += write(1, &format_str[*index], 1);
+		return (unknow_length);
 	}
 
 	return (printed_chars);

@@ -1,27 +1,27 @@
 #include "main.h"
 
 /**
- * get_size - Calculates the size to cast the argument
- * @format: Formatted string in which to print the arguments
- * @i: List of arguments to be printed.
+ * get_arg_size - Calculates the size to cast the argument
+ * @format_str: Formatted string in which to print the arguments
+ * @index: List of arguments to be printed.
  *
- * Return: Precision.
+ * Return: Precision(Argument size).
  */
 
-int get_size(const char *format, int *i)
+int get_arg_size(const char *format_str, int *index)
 {
-	int curr_i = *i + 1;
-	int size = 0;
+	int current_index = *index + 1;
+	int arg_size = 0;
 
-	if (format[curr_i] == 'l')
-		size = S_LONG;
-	else if (format[curr_i] == 'h')
-		size = S_SHORT;
+	if (format_str[current_index] == 'l')
+		arg_size = S_LONG;
+	else if (format_str[current_index] == 'h')
+		arg_size = S_SHORT;
 
-	if (size == 0)
-		*i = curr_i - 1;
+	if (arg_size == 0)
+		*index = current_index - 1;
 	else
-		*i = curr_i;
+		*index = current_index;
 
-	return (size);
+	return (arg_size);
 }
