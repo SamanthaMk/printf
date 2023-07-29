@@ -28,9 +28,9 @@ else
 {
 pri_buff(buff, &buff_np);
 flag = flaged(format, &ixp);
-range = width(format, &ixp, st);
+range = get_print_width(format, &ixp, st);
 pre = find_pre(format, &ixp, st);
-area = size(format, &ixp);
+area = get_arg_size(format, &ixp);
 ++ixp;
 pr = handle(format, &ixp, st, buff, flag, range, pre, area);
 if (pr == -1)
