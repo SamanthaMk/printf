@@ -15,7 +15,7 @@ int flag, int range, int pre, int area)
 {
 int y = BUFF_SIZE - 2;
 unsigned long int gig = va_arg(sets, unsigned long int);
-gig = converted_area(gig, area);
+gig = convert_num_size(gig, area);
 if (gig == 0)
 buff[y--] = '0';
 buff[BUFF_SIZE - 1] = '\0';
@@ -25,7 +25,7 @@ buff[y--] = (gig % 10) + '0';
 gig /= 10;
 }
 y++;
-return (write_unsign(0, y, buff, flag, range, pre, area));
+return (write_unsigned(0, y, buff, flag, range, pre, area));
 }
 /*** PRINTS UNSIGNED NUMBER IN OCTAL ***/
 /**
@@ -45,19 +45,19 @@ int y = BUFF_SIZE - 2;
 unsigned long int gig = va_arg(sets, unsigned long int);
 unsigned long int num3 = gig;
 VAR(range);
-gig = convert_size_ sign(gig, area);
+gig = convert_num_size(gig, area);
 if (gig == 0)
 buff[y--] = '0';
 buff[BUFF_SIZE - 1] = '\0';
 while (gig > 0)
 {
 buff[y--] = (gig % 8) + '0';
-gig /= 8
+gig /= 8;
 }
 if (flag & FL_HASH && num3 != 0)
 buff[y--] = '0';
 y++;
-return (write_unsign(0, y, buff, flag, range, pre, area));
+return (write_unsigned(0, y, buff, flag, range, pre, area));
 }
 /*** PRINTS UNSIGNED NUM IN HEXADECIMAL ***/
 /**
@@ -74,7 +74,7 @@ return (write_unsign(0, y, buff, flag, range, pre, area));
 int prints_hexa(va_list sets, char buff[],
 int flag, int range, int pre, int area)
 {
-return (print_hexa(sets, "0123456789abcdef", buff,
+return (prints_hexa(sets, "0123456789abcdef", buff,
 flag, 'x', range, pre, area));
 }
 /*** PRINTS UNSIGNED NUMBER IN UPPER HEXADECIMAL ***/
@@ -91,7 +91,7 @@ flag, 'x', range, pre, area));
 int print_up_hexa(va_list sets, char buff[],
 int flag, int range, int pre, int area)
 {
-return (print_hexa(types, "0123456789ABCDEF", buff,
+return (print_hexa(sets, "0123456789ABCDEF", buff,
 flag, 'X', range, pre, area));
 }
 /********* PRINTS HEXA NUM IN LOWER OR UPPER ***********/
@@ -114,7 +114,7 @@ int y = BUFF_SIZE - 2;
 unsigned long int gig = va_arg(sets, unsigned long int);
 unsigned long int num3 = gig;
 VAR(range);
-gig = convert_area_sign(gig, area);
+gig = convert_area_unsigned(gig, area);
 if (gig == 0)
 buff[y--] = '0';
 buff[BUFF_SIZE - 1] = '\0';
@@ -126,8 +126,8 @@ gig /= 16;
 if (flag & FL_HASH && num3 != 0)
 {
 buff[y--] = flagx;
-buffer[y--] = '0';
+buff[y--] = '0';
 }
 y++;
-return (write_unsign(0, y, buff, flag, range, pre, area));
+return (write_nums(0, y, buff, flag, range, pre, area));
 }

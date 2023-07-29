@@ -13,22 +13,22 @@
 int prints_point(va_list sets, char buff[],
 int flag, int range, int pre, int area)
 {
-int yp = BUFF_SIZE - 2, len1 = 2, dad = 1;/* length=2, for '0x' */
 char app = 0, ptr = ' ';
-unsigned long drs;
+int yp = BUFF_SIZE - 2, len1 = 2, dad = 1;/* length=2, for '0x' */
+unsigned long num_d;
 char prm[] = "0123456789abcdef";
-void *drs = va_arg(sets, void *);
+void *d = va_arg(sets, void *);
 VAR(range);
 VAR(area);
-if (drs == NULL)
+if (d == NULL)
 return (write(1, "(nil)", 5));
 buff[BUFF_SIZE - 1] = '\0';
 VAR(pre);
-drs = (unsigned long)drs;
-while (drs > 0)
+num_d = (unsigned long)d;
+while (num_d > 0)
 {
-buff[yp--] = prm[drs % 16];
-drs /= 16;
+buff[yp--] = prm[num_d % 16];
+num_d /= 16;
 len1++;
 }
 if ((flag & FL_ZERO) && !(flag & FL_MINUS))
@@ -38,7 +38,7 @@ app = '+', len1++;
 else if (flag & FL_SPACE)
 app = ' ', len1++;
 yp++;
-return (write(buff, yp, len1,
+return (write(CHAR *, yp, len1,
 range, flag, ptr, app, dad));
 /*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
 }
@@ -66,7 +66,7 @@ if (p == NULL)
 return (write(1, "(null)", 6));
 while (p[y] != '\0')
 {
-if (printedx(p[y]))
+if (printf(p[y]))
 buff[y + grp] = p[y];
 else
 grp += fix_hexa(p[y], buff, y + grp);

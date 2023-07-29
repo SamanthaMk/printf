@@ -29,7 +29,7 @@ else
 pri_buff(buff, &buff_np);
 flag = flaged(format, &ixp);
 range = width(format, &ixp, st);
-pre = find_pre(format, &ixp, st)
+pre = find_pre(format, &ixp, st);
 area = size(format, &ixp);
 ++ixp;
 pr = handle(format, &ixp, st, buff, flag, range, pre, area);

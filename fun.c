@@ -14,7 +14,7 @@ int prints_char1(va_list sets, char buff[],
 int range, int flag, int pre, int area)
 {
 char pxc = va_arg(sets, int);
-return (handlers(pxc, buff, flag, range, pre, area));
+return (handle(pxc, buff, flag, range, pre, area));
 }
 /*** PRINT A STRING ***/
 /**
@@ -29,7 +29,7 @@ return (handlers(pxc, buff, flag, range, pre, area));
 */
 int prints_string2(va_list sets, char buff[],
 int range, int pre, int flag, int area)
-}
+{
 int ep, height = 0;
 char *res = va_arg(sets, char *);
 VAR(flag);
@@ -106,7 +106,7 @@ int minus = 0;
 int z = BUFF_SIZE - 2;
 long int k = va_arg(sets, long int);
 unsigned long int gig;
-k = converted_area_num(k, area);
+k = convert_num_size,( area);
 if (k == 0)
 buff[z--] = '0';
 buff[BUFF_SIZE - 1] = '\0';
@@ -122,7 +122,7 @@ buff[z--] = (gig % 10) + '0';
 gig /= 10;
 }
 z++;
-return (write_num1(minus, z, buff, flag, range, pre, area));
+return (write_nums(minus, z, buff, flag, range, pre, area));
 }
 /*** PRINT BINARY ***/
 /**

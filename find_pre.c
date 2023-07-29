@@ -15,7 +15,7 @@ return (pre);
 pre = 0;
 for (jk += 1; form[jk] != '\0'; jk++)
 {
-if (is_digit(form[jk]))
+if (digit_check(form[jk]))
 {
 pre *= 10;
 pre += form[jk] - '0';
