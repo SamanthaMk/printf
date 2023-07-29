@@ -106,7 +106,7 @@ int minus = 0;
 int z = BUFF_SIZE - 2;
 long int k = va_arg(sets, long int);
 unsigned long int gig;
-k = convert_num_size,( area);
+k = convert_num_size(area); // Fixed the syntax error here
 if (k == 0)
 buff[z--] = '0';
 buff[BUFF_SIZE - 1] = '\0';
@@ -122,7 +122,7 @@ buff[z--] = (gig % 10) + '0';
 gig /= 10;
 }
 z++;
-return (write_nums(minus, z, buff, flag, range, pre, area));
+return (prints_int(minus, z, buff, flag, range, pre, area));
 }
 /*** PRINT BINARY ***/
 /**
